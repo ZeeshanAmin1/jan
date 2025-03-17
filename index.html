@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Amna Surprise </title>
+</head>
+
+<style> 
+
+
+
+
+
+
+#video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Video ko full cover karayega bina distort kiye */             
+}
+
+.countdown {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 25px; /* Yeh border ko rounded karega */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Thoda shadow effect */
+}
+@media (max-width: 768px) {
+    .countdown {
+        top: 10%; /* Mobile par bhi top pe laane ke liye */
+        font-size: 1.5rem;
+        padding: 10px;
+        width: 85%;
+        border-radius: 20px;
+    }
+
+    .countdown h1 {
+        font-size: 1.5rem;
+        margin: 5px 0;
+    }
+
+    #timer {
+        font-size: 1.2rem;
+        letter-spacing: 1px;
+    }
+}
+
+
+
+ </style>
+<body style="overflow: auto;">
+<div>
+ <video autoplay muted loop id="video">
+ 	
+ 	<source src="1/2.mp4" type="video/mp4">
+
+
+ </video>
+</div >
+<div class="countdown" >
+    
+    <h1>Bash thora sa time hi tou hai</h1>
+    <div id="timer"> 00d ,00h, 00m , 00s </div>
+</div>
+
+
+<script >
+    function startCountdown(targetDate) {
+
+    function updateTimer() {
+
+    const now = new Date().getTime();
+    const timeleft = targetDate - now;
+
+
+    if (timeleft <=0) {
+
+        document.getElementById('timer').innerHTML ="🎉 Happy Birthday Meri Amna! 🎂";
+        clearInterval (interval);
+        return;
+}
+        const days = Math.floor(timeleft / ( 1000 * 60 * 60 * 24 )) ;
+        const hours = Math.floor((timeleft % ( 1000 * 60 * 60 * 24 )) / ( 1000 * 60 * 60 ));
+        const minutes = Math.floor((timeleft % ( 1000 * 60 * 60))  / ( 1000 * 60 ));
+        const seconds =  Math.floor((timeleft % ( 1000 * 60  )) / 1000);
+
+        document.getElementById('timer').innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s `;
+
+    
+
+    }
+    updateTimer();
+    const interval = setInterval(updateTimer, 1000);
+
+    }
+    const birthday = new Date  (2025, 2 , 19 , 12 , 0, 0 ).getTime();
+    startCountdown(birthday); 
+    console.log(birthday);
+</script>
+</body>
+</html>
